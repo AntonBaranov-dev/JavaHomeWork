@@ -11,27 +11,36 @@ public class Bingo {
 
     public static void main(String[] args) {
         print("Hi i am a bingo game. Guess number");
+        print("Enter value:");
         process();
     }
 
     private static void process() {
-        print("Enter value:");
-        int value = input.nextInt();
+        Object value = input.next();
 
-        if (randomNumber == value) {
-            print("The number is guessed!!!");
-            print("Count attempt - " + attempt);
-            System.exit(0);
-        } else if (randomNumber > value) {
-            print("The number is greater");
-        } else {
-            print("The number is less");
+        try {
+            if (randomNumber == Integer.parseInt(value.toString())) {
+                print("The number is guessed!!!");
+                print("Count attempt - " + attempt);
+                System.exit(0);
+            } else if (randomNumber > Integer.parseInt(value.toString())) {
+                print("The number is greater");
+            } else {
+                print("The number is less");
+            }
+            attempt++;
+            process();
+        } catch (NumberFormatException ex) {
+            if ("quit".equals(value)) {
+                System.exit(0);
+            } else {
+                print("Enter number");
+                process();
+            }
         }
-        attempt++;
-        process();
     }
 
-    private static void print(String str) {
-        System.out.println(str);
+    private static <T> void print(T t) {
+        System.out.println(t);
     }
 }
