@@ -1,6 +1,7 @@
 HELP.md
 /target/
 .idea
+.out
 *.iws
 *.iml
 *.ipr
